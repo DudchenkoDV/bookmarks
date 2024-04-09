@@ -1,10 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
 from django.http import HttpResponse
 
 from account.forms import LoginForm, UserRegistrationForm
+from account.models import Profile
 
 
 def user_login(request):
@@ -46,6 +46,8 @@ def register(request):
                 user_form.cleaned_data['password'])
             # Сохранить объект пользователя
             new_user.save()
+            # Создать профиль пользователя
+            Profile.objects.create(user=new_user)
             return render(request,
                           'account/register_done.html',
                           {'new_user': new_user})
