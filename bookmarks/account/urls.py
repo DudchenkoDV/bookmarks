@@ -1,4 +1,3 @@
-from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
 from . import views
@@ -12,8 +11,9 @@ urlpatterns = [
     # # Адреса смены пароля
     # path('password-change/', auth_views.PasswordChangeView.as_view(),
     #      name='password_change'),
-    # path('password-change/done/', auth_views.PasswordChangeDoneView.as_view(),
-    #      name='password_change_done'),
+    # path('password-change/done/',
+    #       auth_views.PasswordChangeDoneView.as_view(),
+    #       name='password_change_done'),
     # # Адреса сброса пароля
     # path('password-reset/',
     #      auth_views.PasswordResetView.as_view(),
