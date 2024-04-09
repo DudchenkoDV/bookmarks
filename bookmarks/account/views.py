@@ -9,7 +9,7 @@ def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            cd = form.changed_data
+            cd = form.cleaned_data
             user = authenticate(request,
                                 username=cd['username'],
                                 password=cd['password'])
@@ -21,6 +21,6 @@ def user_login(request):
                     return HttpResponse('Disabled account')
             else:
                 return HttpResponse('Invalid login')
-        else:
-            form = LoginForm()
-        return render(request, 'account/login.html', {'form': form})
+    else:
+        form = LoginForm()
+    return render(request, 'account/login.html', {'form': form})
